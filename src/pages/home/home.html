@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Lista de Publicadores
+    </ion-title>
+    <ion-buttons end>
+	  <button ion-button icon-only (click)="addPublicador()">
+	    <ion-icon name="add"></ion-icon>
+	  </button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<ion-searchbar (ionInput)="filterPublicadores($event, publicadores)"></ion-searchbar>
+
+	<ion-list>
+		<ion-item-sliding *ngFor="let publicador of publicadores" #slideItem>
+	  		<ion-item (click)="updatePublicador(publicador)">
+		    	<h2>{{publicador.name}}</h2>
+		    	<p>{{publicador.quote}}</p>
+	  		</ion-item>
+			<ion-item-options side="right">
+				<button ion-button color="danger" (click)="removePublicador(publicador.$key)">
+					<ion-icon name="close"></ion-icon>
+					Borrar
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+</ion-content>

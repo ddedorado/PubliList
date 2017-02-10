@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar publicador</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="closeModal()">
+        <span ion-text color="primary" showWhen="ios">Cerrar</span>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+  <ion-item>
+    <ion-label color="primary" floating>Nombre</ion-label>
+    <ion-input [(ngModel)]="publicador.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" floating>Comentarios</ion-label>
+    <ion-textarea [(ngModel)]="publicador.quote"></ion-textarea>
+  </ion-item>
+
+  <button ion-button round (click)="savePublicador(publicador)">Guardar</button>
+
+</ion-content>
