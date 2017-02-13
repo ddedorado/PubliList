@@ -22,7 +22,8 @@ import { PublicadorService } from '../../providers/publicador/publicador';
 } )
 export class HomePage {
 
-	publicadores = [];
+	publicadores       = [];
+	publicadoresFilter = [];
 	searchQuery : string = "";
 
 	constructor(
@@ -33,14 +34,21 @@ export class HomePage {
 		public publicadorSvc: PublicadorService
 	) {
 
+		this.initializePublicadores();
+	}
+
+	initializePublicadores() {
+
     	this.publicadorSvc.getPublicadores().subscribe( ( items ) => {
+			
+			this.publicadores = [];
 
     		items.forEach( ( item ) => {
     			
 				this.publicadores.push( item );
     		} ) ;	
 
-    	} );	
+    	} );
 	}
 
 	addPublicador() {
@@ -66,27 +74,19 @@ export class HomePage {
 		
 		let query = event.target.value;
 
-    	//this.publicadores = this.publicadorSvc.getPublicadoresByQuery( query );
+		this.publicadorSvc.getPublicadores().subscribe( ( items ) => {
+			
+			this.publicadores = [];
 
-    	if ( query && query.trim() != '' ) {
+    		items.forEach( ( item ) => {
+    			
+    			if ( item.name.toLowerCase().indexOf( query.toLowerCase() ) > -1 ) {
 
-    		/*this.publicadores.forEach( ( publicadores ) => {
+					this.publicadores.push( item );
+				}
+				
+    		} ) ;	
 
-				arrayList.push( */
-
-					this.publicadores = this.publicadores.filter( ( publicador ) => {
-
-						console.log(publicador.name.toLowerCase().indexOf(query.toLowerCase()) > -1);
-					
-						if (publicador.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-							return publicador;
-						}
-					
-					}); 
-				/*);
-
-				console.log(arrayList);
-    		} );*/
-    	}
+    	} );
 	}
 }
