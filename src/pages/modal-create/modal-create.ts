@@ -33,7 +33,7 @@ export class ModalCreatePage {
 	addPublicador( publicadorData ) {
 
 		this.publicadorSvc.addPublicador( publicadorData );
-
+		
 		this.closeModal();
 	}
 }

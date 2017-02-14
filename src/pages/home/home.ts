@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { 
 	NavController, 
-	AlertController, 
 	ActionSheetController,
 	ModalController
 } from 'ionic-angular';
-
-import 'rxjs/add/operator/map'; // you might need to import this, or not depends on your setup
 
 //Page
 import { ModalDetailPage } from '../modal-detail/modal-detail';
@@ -22,13 +19,10 @@ import { PublicadorService } from '../../providers/publicador/publicador';
 } )
 export class HomePage {
 
-	publicadores       = [];
-	publicadoresFilter = [];
-	searchQuery : string = "";
+	publicadores = [];
 
 	constructor(
-		public navCtrl: NavController, 
-		public alertCtrl: AlertController, 
+		public navCtrl: NavController,  
 		public actionSheetCtrl: ActionSheetController,
 		public modalCtrl: ModalController,
 		public publicadorSvc: PublicadorService
@@ -70,7 +64,7 @@ export class HomePage {
 		editModal.present();
 	}
 
-	filterPublicadores( event, publi ) {
+	filterPublicadores( event ) {
 		
 		let query = event.target.value;
 

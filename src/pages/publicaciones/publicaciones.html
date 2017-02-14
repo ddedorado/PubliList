@@ -4,10 +4,10 @@
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
-      Lista de Publicadores
+      Lista de Publicaciones
     </ion-title>
     <ion-buttons end>
-	  <button ion-button icon-only (click)="addPublicador()">
+	  <button ion-button icon-only (click)="addPublicacion()">
 	    <ion-icon name="add"></ion-icon>
 	  </button>
 	</ion-buttons>
@@ -16,16 +16,15 @@
 
 <ion-content padding>
 
-	<ion-searchbar (ionInput)="filterPublicadores($event)"></ion-searchbar>
+	<ion-searchbar (ionInput)="filterPublicaciones($event)"></ion-searchbar>
 
 	<ion-list>
-		<ion-item-sliding *ngFor="let publicador of publicadores" #slideItem>
-	  		<ion-item (click)="updatePublicador(publicador)">
-		    	<h2>{{publicador.name}}</h2>
-		    	<p>{{publicador.quote}}</p>
+		<ion-item-sliding *ngFor="let publicacion of publicaciones" #slideItem>
+	  		<ion-item>
+		    	<h2>{{publicacion.title}}</h2>
 	  		</ion-item>
 			<ion-item-options side="right">
-				<button ion-button color="danger" (click)="removePublicador(publicador.$key)">
+				<button ion-button color="danger" (click)="removePublicacion(publicacion.$key)">
 					<ion-icon name="close"></ion-icon>
 					Borrar
 				</button>

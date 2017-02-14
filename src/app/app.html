@@ -1,1 +1,16 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mycontent">
+
+    <ion-content>
+        <ion-list>
+             <button ion-item menuClose (click)="openPage(homePage)">
+                Publicadores
+            </button>
+            <button ion-item menuClose (click)="openPage(publicadoresPage)">
+                Publicaciones
+            </button>
+        </ion-list>
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

@@ -4,11 +4,13 @@ import { MyApp } from './app.component';
 
 //Pages
 import { HomePage } from '../pages/home/home';
+import { PublicacionesPage } from '../pages/publicaciones/publicaciones';
 import { ModalCreatePage } from '../pages/modal-create/modal-create';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
 
 //Providers
 import { PublicadorService } from '../providers/publicador/publicador';
+import { PublicacionService } from '../providers/publicacion/publicacion';
 
 //Modules
 import { AngularFireModule } from 'angularfire2';
@@ -25,6 +27,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
+    PublicacionesPage,
     ModalCreatePage,
     ModalDetailPage
   ],
@@ -36,11 +39,13 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
+    PublicacionesPage,
     ModalCreatePage,
     ModalDetailPage
   ],
   providers: [
-    PublicadorService
+    PublicadorService,
+    PublicacionService
   ]
 })
 export class AppModule {}
