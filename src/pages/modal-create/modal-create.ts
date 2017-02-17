@@ -6,24 +6,41 @@ import {
 } from 'ionic-angular';
 
 import { PublicadorService } from '../../providers/publicador/publicador';
+import { PublicacionService } from '../../providers/publicacion/publicacion';
 
 @Component({
 	templateUrl: 'modal-create.html',
-	providers: [PublicadorService]
+	providers: [PublicadorService, PublicacionService]
 })
 export class ModalCreatePage {
 	
 	publicador = {
 		name : "",
-		quote: ""
+		quote: "",
+		publications: []
 	};
+
+	publicaciones = [];
 
 	constructor(
 		public platform: Platform,
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
-		public publicadorSvc: PublicadorService
-	) {}
+		public publicadorSvc: PublicadorService,
+		public publicacionSvc: PublicacionService
+	) {
+
+		this.publicacionSvc.getPublicaciones().subscribe( ( items ) => {
+
+			this.publicaciones = [];
+
+			items.forEach( ( item ) => {
+
+				this.publicaciones.push( item );
+			} );
+
+		} );
+	}
 
 	closeModal() {
 
@@ -35,5 +52,17 @@ export class ModalCreatePage {
 		this.publicadorSvc.addPublicador( publicadorData );
 		
 		this.closeModal();
+	}
+
+	addRow() {
+
+		let publication = { key: '', quantity: 0 };
+
+		this.publicador.publications.push( publication );
+	}
+
+	deleteRow( index ) {
+
+		this.publicador.publications.splice( index, 1 );
 	}
 }

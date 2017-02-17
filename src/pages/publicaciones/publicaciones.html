@@ -22,6 +22,7 @@
 		<ion-item-sliding *ngFor="let publicacion of publicaciones" #slideItem>
 	  		<ion-item>
 		    	<h2>{{publicacion.title}}</h2>
+		    	<p>Code: {{publicacion.code}}</p>
 	  		</ion-item>
 			<ion-item-options side="right">
 				<button ion-button color="danger" (click)="removePublicacion(publicacion.$key)">

@@ -46,6 +46,10 @@ export class PublicacionesPage {
 				{
 					name: 'title',
 					placeholder: 'Nombre de la publicacion'
+				},
+				{
+					name: 'code',
+					placeholder: 'Código de la publicación'
 				}
 			],
 			buttons: [
@@ -58,7 +62,12 @@ export class PublicacionesPage {
 				{
 					text: 'Crear',
 					handler: ( data => {
-						this.publicacionSvc.addPublicacion( { title : data.title } );
+						this.publicacionSvc.addPublicacion( 
+							{ 
+								title : data.title,
+								code  : data.code
+							} 
+						);
 					} )
 				}
 			]

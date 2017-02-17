@@ -24,7 +24,8 @@ export class PublicadorService {
 		this.publicadoresObservable.push( 
 			{
 				name: data.name,
-				quote: data.quote
+				quote: data.quote,
+				publications: data.publications
 			}
 		);
 	}
@@ -39,7 +40,8 @@ export class PublicadorService {
 			data.$key, 
 			{
 	  			name: data.name,
-	  			quote: data.quote
+	  			quote: data.quote,
+	  			publications: data.publications
 			}
 		);
 	}

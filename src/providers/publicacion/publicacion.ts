@@ -26,6 +26,7 @@ export class PublicacionService {
 		this.publicacionesObservable.push( 
 			{
 				title: data.title,
+				code : data.code
 			}
 		);
 	}

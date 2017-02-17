@@ -21,6 +21,37 @@
     <ion-textarea [(ngModel)]="publicador.quote"></ion-textarea>
   </ion-item>
 
-  <button ion-button round (click)="savePublicador(publicador)">Guardar</button>
+  <ion-item>
+    <ion-label color="primary">Publicaciones</ion-label>
+    <button item-right ion-button outline (click)="addRow()">
+        <span ion-text color="primary" showWhen="ios">Añadir</span>
+        <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-item>
+
+  <ion-card *ngFor="let publication of publicador.publications">
+    <ion-card-header>
+      <button item-right ion-button clear (click)="deleteRow(publication.$index)">
+        <span ion-text color="primary" showWhen="ios">Delete</span>
+      <ion-icon name="md-trash"></ion-icon>
+    </button>
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">Publicacion</ion-label>
+        <ion-select item-right [(ngModel)]="publication.key">
+          <ion-option *ngFor="let publi of publicaciones" value="{{publi.$key}}">{{publi.title}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary">Cantidad</ion-label>
+        <ion-input text-right type="number" placeholder="Cantidad" [(ngModel)]="publication.quantity"></ion-input>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <button ion-button full (click)="savePublicador(publicador)">Guardar</button>
 
 </ion-content>
