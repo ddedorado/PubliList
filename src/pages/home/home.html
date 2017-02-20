@@ -23,6 +23,7 @@
 	  		<ion-item (click)="updatePublicador(publicador)">
 		    	<h2>{{publicador.name}}</h2>
 		    	<p>{{publicador.quote}}</p>
+		    	<ion-badge class="home-badge" *ngFor="let publicacion of publicador.publications">{{ publicacion.code }}: {{ publicacion.quantity }}</ion-badge>
 	  		</ion-item>
 			<ion-item-options side="right">
 				<button ion-button color="danger" (click)="removePublicador(publicador.$key)">
