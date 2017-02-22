@@ -30,7 +30,7 @@ export class PublicacionService {
 			}
 		);
 	}
-
+	
 	deletePublicacion( id ) {
 
 		this.publicacionesObservable.remove( id );  		
