@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { 
 	NavController, 
 	NavParams, 
-	AlertController, 
+	AlertController,
+	ToastController, 
 	ActionSheetController 
 } from 'ionic-angular';
 
@@ -26,8 +27,9 @@ export class PublicacionesPage {
   		public navParams: NavParams,
   		public actionSheetCtrl: ActionSheetController,
   		public alertCtrl: AlertController,
+  		public toastCtrl: ToastController,
   		public publicacionSvc: PublicacionService,
-  		public publicadorSvc: PublicadorService 
+  		public publicadorSvc: PublicadorService
 	) {
 
 		this.publicacionSvc.getPublicaciones().subscribe( ( items ) => {
@@ -72,12 +74,20 @@ export class PublicacionesPage {
 				{
 					text: 'Crear',
 					handler: ( data => {
-						this.publicacionSvc.addPublicacion( 
-							{ 
-								title : data.title,
-								code  : data.code
-							} 
-						);
+
+						if ( data.title.length <= 0 || data.code.length <= 0 ) {
+
+							this.showToast( 'Error al crear su publicación. Los campos son erróneos.' );
+
+						} else {
+
+							this.publicacionSvc.addPublicacion( 
+								{ 
+									title : data.title,
+									code  : data.code
+								} 
+							);
+						}
 					} )
 				}
 			]
@@ -134,8 +144,6 @@ export class PublicacionesPage {
 								this.publicadorSvc.editPublicador( publicador );
 							} );
 
-							console.log(publicadoresAssociados);
-
 							this.publicacionSvc.deletePublicacion( publicacionId );
 						} )
 					},
@@ -177,4 +185,16 @@ export class PublicacionesPage {
 			} );
 		} );
 	}
+
+  	showToast( msg ) {
+
+    	const toast = this.toastCtrl.create( {
+	      message        : msg,
+	      showCloseButton: true,
+	      closeButtonText: 'Cerrar',
+	      position       : 'bottom'
+	    } );
+
+	    toast.present();
+  	}
 }
